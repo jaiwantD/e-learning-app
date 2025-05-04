@@ -1,0 +1,43 @@
+# Ignore virtual environment folder
+env/
+
+# Ignore .env file for sensitive API keys and secrets
+.env
+
+# Python bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Flask config
+instance/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+
+# MacOS system files
+.DS_Store
+
+# Linux system files
+*.bak
+*.swp
+
+# Windows system files
+Thumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Flask migrations folder
+migrations/
+
+# Log files
+*.log
+
+# .env files (store API keys and secrets here)
+*.env
+
+# .env files (specific to Python projects with dotenv or similar)
+*.flaskenv

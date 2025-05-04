@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!-- Background Video -->
+<div class="position-fixed top-0 start-0 w-100 h-100 overflow-hidden z-n1">
+    <video autoplay muted loop class="w-100 h-100 object-fit-cover">
+        <source src="{{ url_for('static', filename='videos/background.mp4') }}" type="video/mp4">
+    </video>
+</div>
+
+<!-- Page Content -->
+<div class="text-center mt-5 text-white">
+    <h1 class="display-4 fw-bold">Welcome to the E-Learning Platform</h1>
+    <p class="lead">Learn in-demand skills anytime, anywhere. Start your journey today.</p>
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Get Started</a>
+    <br><br><br><br><br>
+</div>
+
+<div class="container mt-5 text-white">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/tutor.jpg') }}" width="150" alt="Expert Tutors">
+            <h4 class="mt-3">Expert Tutors</h4>
+            <p>Learn from experienced instructors across various domains.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/any.jpg') }}" width="120" alt="Anytime Access">
+            <h4 class="mt-3">Anytime Access</h4>
+            <p>Study at your own convenience with lifetime access to content.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/cert.png') }}" width="150" alt="Certificate">
+            <h4 class="mt-3">Certification</h4>
+            <p>Earn completion certificates to boost your career opportunities.</p>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light mt-5 py-5">
+    <div class="container">
+        <h3 class="text-center mb-4">Popular Courses</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="{{ url_for('static', filename='images/java.jpg') }}" class="card-img-top" alt="Java">
+                    <div class="card-body">
+                        <h5 class="card-title">Java Programming</h5>
+                        <p class="card-text">Master Java from scratch, including OOPs concepts and real-world projects.</p>
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-primary">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="{{ url_for('static', filename='images/full.png') }}" class="card-img-top" alt="Full Stack">
+                    <div class="card-body">
+                        <h5 class="card-title">Full Stack Development</h5>
+                        <p class="card-text">Learn frontend and backend technologies to build full-scale applications.</p>
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-primary">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="{{ url_for('static', filename='images/ai.jpg') }}" class="card-img-top" alt="AI">
+                    <div class="card-body">
+                        <h5 class="card-title">AI & Machine Learning</h5>
+                        <p class="card-text">Get hands-on experience with data science, ML algorithms, and Python.</p>
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-primary">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<br><br><br><br>
+{% endblock %}
