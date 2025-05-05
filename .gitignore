@@ -41,3 +41,4 @@ migrations/
 
 # .env files (specific to Python projects with dotenv or similar)
 *.flaskenv
+.vercel

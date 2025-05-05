@@ -1,12 +1,214 @@
-{% extends 'base.html' %}
-{% block title %}Verify OTP{% endblock %}
-{% block content %}
-<h2>Verify OTP</h2>
-<form method="POST">
-  <div class="mb-3">
-    <label>Enter OTP sent to your email</label>
-    <input type="text" name="otp" class="form-control" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Verify</button>
-</form>
-{% endblock %}
+<style>
+  body {
+    background-color: #121212;
+    background-image: linear-gradient(135deg, #121212 0%, #2d2d2d 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .otp-container {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    max-width: 450px;
+    width: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+  }
+  
+  .otp-container:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+    border-color: #444;
+  }
+  
+  .otp-title {
+    text-align: center;
+    color: #00bcd4;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  .otp-subtitle {
+    text-align: center;
+    color: #bbbbbb;
+    margin-bottom: 25px;
+    font-size: 16px;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #bbbbbb;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    letter-spacing: 3px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: #00bcd4;
+    box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
+    background-color: #333;
+    outline: none;
+  }
+  
+  .form-control:hover {
+    background-color: #333;
+    border-color: #00bcd4;
+  }
+  
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #00bcd4;
+    color: #121212;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-primary:hover {
+    background-color: #00e5ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 188, 212, 0.4);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 188, 212, 0.4);
+  }
+  
+  .resend-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #bbbbbb;
+  }
+  
+  .resend-link a {
+    color: #00bcd4;
+    text-decoration: none;
+    padding: 3px 6px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .resend-link a:hover {
+    background-color: #004d56;
+    color: #00e5ff;
+    text-decoration: none;
+  }
+  
+  .otp-timer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ff5252;
+  }
+</style>
+
+<div class="otp-container">
+  <h1 class="otp-title">E-Learning</h1>
+  <h2 class="otp-subtitle">Verify Your Account</h2>
+  <p class="otp-subtitle" style="margin-top: -15px;">Please enter the 6-digit code sent to your email</p>
+  
+  <form method="POST">
+    <div class="form-group">
+      <label class="form-label">One-Time Password (OTP)</label>
+      <input type="text" name="otp" class="form-control" maxlength="6" autocomplete="off" required>
+    </div>
+    <button type="submit" class="btn-primary">Verify</button>
+  </form>
+  
+  <p class="otp-timer">Code expires in: <span id="timer">05:00</span></p>
+  
+  <p class="resend-link">
+    Didn't receive the code? <a href="#">Resend OTP</a>
+  </p>
+</div>
+
+<script>
+  // Simple countdown timer
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    var interval = setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+      
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      
+      display.textContent = minutes + ":" + seconds;
+      
+      if (--timer < 0) {
+        clearInterval(interval);
+        display.textContent = "Expired";
+      }
+    }, 1000);
+  }
+  
+  window.onload = function () {
+    var fiveMinutes = 60 * 5,
+        display = document.querySelector('#timer');
+    startTimer(fiveMinutes, display);
+  };
+</script>
+<script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    window.AgentInitializer.init({
+      agentRenderURL: "https://agent.jotform.com/01969f7b01ba796ca6e75672fedf41fdbf74",
+      rootId: "JotformAgent-01969f7b01ba796ca6e75672fedf41fdbf74",
+      formID: "01969f7b01ba796ca6e75672fedf41fdbf74",
+      queryParams: ["skipWelcome=1", "maximizable=1"],
+      domain: "https://www.jotform.com",
+      isDraggable: false,
+      background: "linear-gradient(180deg, #035C5F 0%, #035C5F 100%)",
+      buttonBackgroundColor: "#1a64f3",
+      buttonIconColor: "#FFFFFF",
+      variant: false,
+      customizations: {
+        "greeting": "Yes",
+        "greetingMessage": "Hello",
+        "openByDefault": "No",
+        "pulse": "Yes",
+        "position": "right",
+        "autoOpenChatIn": "0"
+      },
+      isVoice: false,
+    });
+  });
+</script>

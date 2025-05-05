@@ -42,5 +42,32 @@
 
     <a href="{{ url_for('logout') }}" class="btn btn-danger mt-3">Logout</a>
 </div>
+
+<script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    window.AgentInitializer.init({
+      agentRenderURL: "https://agent.jotform.com/01969f7b01ba796ca6e75672fedf41fdbf74",
+      rootId: "JotformAgent-01969f7b01ba796ca6e75672fedf41fdbf74",
+      formID: "01969f7b01ba796ca6e75672fedf41fdbf74",
+      queryParams: ["skipWelcome=1", "maximizable=1"],
+      domain: "https://www.jotform.com",
+      isDraggable: false,
+      background: "linear-gradient(180deg, #035C5F 0%, #035C5F 100%)",
+      buttonBackgroundColor: "#1a64f3",
+      buttonIconColor: "#FFFFFF",
+      variant: false,
+      customizations: {
+        "greeting": "Yes",
+        "greetingMessage": "Hello",
+        "openByDefault": "No",
+        "pulse": "Yes",
+        "position": "right",
+        "autoOpenChatIn": "0"
+      },
+      isVoice: false,
+    });
+  });
+</script>
 </body>
 </html>

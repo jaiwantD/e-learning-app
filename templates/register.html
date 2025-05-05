@@ -1,16 +1,177 @@
-{% extends 'base.html' %}
-{% block title %}Register{% endblock %}
-{% block content %}
-<h2>Register</h2>
-<form method="POST">
-  <div class="mb-3">
-    <label>Email</label>
-    <input type="email" name="email" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label>Password</label>
-    <input type="password" name="password" class="form-control" required>
-  </div>
-  <button type="submit" class="btn btn-success">Register</button>
-</form>
-{% endblock %}
+<style>
+  body {
+    background-color: #121212;
+    background-image: linear-gradient(135deg, #121212 0%, #2d2d2d 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .register-container {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    max-width: 450px;
+    width: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+  }
+  
+  .register-container:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+    border-color: #444;
+  }
+  
+  .register-title {
+    color: #00bcd4;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 28px;
+  }
+  
+  .register-subtitle {
+    color: #bbbbbb;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .form-control {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #444;
+    transition: all 0.3s ease;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .form-control:focus {
+    border-color: #00bcd4;
+    box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
+    background-color: #333;
+  }
+  
+  .form-control:hover {
+    background-color: #333;
+    border-color: #00bcd4;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #bbbbbb;
+  }
+  
+  .btn-success {
+    background-color: #00bcd4;
+    border: none;
+    padding: 12px 5px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: 500;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    color: #121212;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .btn-success:hover {
+    background-color: #00e5ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 188, 212, 0.4);
+  }
+  
+  .btn-success:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 188, 212, 0.4);
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #bbbbbb;
+  }
+  
+  .login-link a {
+    color: #00bcd4;
+    text-decoration: none;
+    padding: 3px 6px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .login-link a:hover {
+    background-color: #004d56;
+    color: #00e5ff;
+    text-decoration: none;
+  }
+</style>
+
+<div class="register-container">
+  <h1 class="register-title">E-Learning</h1>
+  <p class="register-subtitle">Create your account</p>
+  
+  <form method="POST">
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Confirm Password</label>
+      <input type="password" name="confirm_password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn-success">Register</button>
+    <p class="login-link">
+      Already have an account? <a href="{{ url_for('login') }}">Click here to login</a>
+    </p>
+  </form>
+</div>
+<script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    window.AgentInitializer.init({
+      agentRenderURL: "https://agent.jotform.com/01969f7b01ba796ca6e75672fedf41fdbf74",
+      rootId: "JotformAgent-01969f7b01ba796ca6e75672fedf41fdbf74",
+      formID: "01969f7b01ba796ca6e75672fedf41fdbf74",
+      queryParams: ["skipWelcome=1", "maximizable=1"],
+      domain: "https://www.jotform.com",
+      isDraggable: false,
+      background: "linear-gradient(180deg, #035C5F 0%, #035C5F 100%)",
+      buttonBackgroundColor: "#1a64f3",
+      buttonIconColor: "#FFFFFF",
+      variant: false,
+      customizations: {
+        "greeting": "Yes",
+        "greetingMessage": "Hello",
+        "openByDefault": "No",
+        "pulse": "Yes",
+        "position": "right",
+        "autoOpenChatIn": "0"
+      },
+      isVoice: false,
+    });
+  });
+</script>
+<!-- </body> -->
